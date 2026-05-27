@@ -11,7 +11,7 @@ cat <<EOF > docker-compose.yml
 services:
 
   app:
-    image: nextcloud:latest
+    image: nextcloud:29
 
     container_name: nextcloud
 
@@ -27,11 +27,14 @@ services:
       - POSTGRES_USER=nextcloud
       - POSTGRES_PASSWORD=nc_pass
 
-      - NEXTCLOUD_TRUSTED_DOMAINS=34.238.43.82
+      - NEXTCLOUD_ADMIN_USER=admin
+      - NEXTCLOUD_ADMIN_PASSWORD=ProyectoNC123
+
+      - NEXTCLOUD_TRUSTED_DOMAINS=44.202.35.32
 
       - TRUSTED_PROXIES=10.0.1.0/24
 
-      - OVERWRITEHOST=34.238.43.82
+      - OVERWRITEHOST=44.202.35.32
       - OVERWRITEPROTOCOL=http
       - OVERWRITEWEBROOT=/nextcloud
 
