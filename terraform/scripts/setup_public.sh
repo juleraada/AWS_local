@@ -8,7 +8,7 @@ systemctl enable --now docker
 mkdir -p /home/ec2-user/app && cd /home/ec2-user/app
 
 # Crear config de Nginx como Balanceador de Carga
-cat <<EOF > nginx.conf
+cat <<'EOF' > nginx.conf
 events {}
 
 http {
@@ -73,7 +73,7 @@ http {
 EOF
 
 # Docker Compose
-cat <<EOF > docker-compose.yml
+cat <<'EOF' > docker-compose.yml
 services:
 
   nginx:
