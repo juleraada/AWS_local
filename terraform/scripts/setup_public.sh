@@ -15,7 +15,6 @@ http {
 
     upstream nextcloud_backend {
         server 10.0.2.110:80;
-        server 10.0.2.120:80;
     }
 
     server {
@@ -28,6 +27,11 @@ http {
         location /gitea/ {
 
             proxy_pass http://gitea:3000/;
+
+            proxy_connect_timeout 300;
+            proxy_send_timeout 300;
+            proxy_read_timeout 300;
+            send_timeout 300;
 
             proxy_set_header Host $host;
             proxy_set_header X-Real-IP $remote_addr;
@@ -43,6 +47,11 @@ http {
             proxy_pass http://vscode:8080/;
 
             proxy_http_version 1.1;
+
+            proxy_connect_timeout 300;
+            proxy_send_timeout 300;
+            proxy_read_timeout 300;
+            send_timeout 300;
 
             proxy_set_header Upgrade $http_upgrade;
             proxy_set_header Connection "upgrade";
@@ -61,6 +70,11 @@ http {
             rewrite ^/nextcloud/(.*)$ /$1 break;
 
             proxy_pass http://nextcloud_backend;
+
+            proxy_connect_timeout 300;
+            proxy_send_timeout 300;
+            proxy_read_timeout 300;
+            send_timeout 300;
 
             proxy_set_header Host $host;
             proxy_set_header X-Real-IP $remote_addr;
