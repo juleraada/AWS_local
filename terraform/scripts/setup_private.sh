@@ -9,12 +9,27 @@ mkdir -p /home/ec2-user/nextcloud && cd /home/ec2-user/nextcloud
 
 cat <<EOF > docker-compose.yml
 services:
+
   db:
     image: postgres:15
+
+    container_name: postgres
+
+    restart: always
+
     environment:
       - POSTGRES_PASSWORD=nc_pass
       - POSTGRES_DB=nextcloud
       - POSTGRES_USER=nextcloud
-      restart: always
+
+    ports:
+      - "5432:5432"
+
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:
+
 EOF
 docker-compose up -d
