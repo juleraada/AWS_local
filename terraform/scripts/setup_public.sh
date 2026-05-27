@@ -74,6 +74,7 @@ EOF
 
 # Docker Compose
 cat <<'EOF' > docker-compose.yml
+  GNU nano 8.3                                             docker-compose.yml                                                        
 services:
 
   nginx:
